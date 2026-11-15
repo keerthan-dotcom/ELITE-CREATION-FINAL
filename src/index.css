@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Snitch-inspired Design System - Clean, Modern, Premium */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 24 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 8%;
+
+    --radius: 0.25rem;
+
+    /* Custom tokens */
+    --surface-elevated: 0 0% 98%;
+    --text-secondary: 0 0% 55%;
+    --accent-hover: 24 100% 45%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 0 0% 8%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 24 100% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 24 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 95%;
+
+    --surface-elevated: 0 0% 10%;
+    --text-secondary: 0 0% 55%;
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 24 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 24 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Figtree', sans-serif;
+  }
+}
+
+@layer components {
+
+  /* Product Card Hover Effects */
+  .product-card {
+    @apply relative overflow-hidden bg-card transition-all duration-300;
+  }
+
+  .product-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  .product-card-image {
+    @apply relative overflow-hidden;
+  }
+
+  .product-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+
+  .product-card:hover .product-card-image img {
+    transform: scale(1.05);
+  }
+
+  /* Size Selector Pills */
+  .size-pill {
+    @apply px-4 py-2 border border-border text-sm font-medium transition-all duration-200 cursor-pointer;
+  }
+
+  .size-pill:hover {
+    @apply border-foreground;
+  }
+
+  .size-pill.active {
+    @apply bg-foreground text-background border-foreground;
+  }
+
+  /* Quick Add Button */
+  .quick-add-btn {
+    @apply absolute bottom-0 left-0 right-0 bg-foreground text-background py-3 text-sm font-semibold uppercase tracking-wider transform translate-y-full transition-transform duration-300;
+  }
+
+  .product-card:hover .quick-add-btn {
+    transform: translateY(0);
+  }
+
+  /* Filter Checkbox */
+  .filter-checkbox {
+    @apply flex items-center gap-3 cursor-pointer py-2 text-sm hover:text-foreground transition-colors;
+  }
+
+  /* Sliding Cart */
+  .cart-slide {
+    @apply fixed inset-y-0 right-0 w-full max-w-md bg-background shadow-2xl z-50 transform transition-transform duration-300;
+  }
+
+  .cart-slide.closed {
+    transform: translateX(100%);
+  }
+
+  .cart-slide.open {
+    transform: translateX(0);
+  }
+
+  /* School Card */
+  .school-card {
+    @apply relative bg-card border border-border overflow-hidden cursor-pointer transition-all duration-300;
+  }
+
+  .school-card:hover {
+    @apply border-foreground shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* Category Badge */
+  .category-badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium uppercase tracking-wide border border-border rounded-full;
+  }
+
+  /* Animated Underline */
+  .animated-underline {
+    @apply relative;
+  }
+
+  .animated-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300;
+  }
+
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Price Display */
+  .price-display {
+    @apply text-lg font-semibold tracking-tight;
+  }
+
+  /* Quantity Selector */
+  .qty-btn {
+    @apply w-10 h-10 flex items-center justify-center border border-border text-sm font-medium hover:bg-secondary transition-colors;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply bg-background/70 backdrop-blur-md border border-white/20 dark:border-white/10;
+  }
+
+  /* Mesh Gradient */
+  .mesh-gradient {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(24, 24, 27, 0.05) 0%, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(251, 146, 60, 0.05) 0%, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(24, 24, 27, 0.05) 0%, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(251, 146, 60, 0.05) 0%, transparent 50%);
+  }
+
+  .dark .mesh-gradient {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(25, 25, 25, 0.5) 0%, transparent 50%);
+  }
+
+  /* Admin Stats Card */
+  .stat-card {
+    @apply p-6 bg-card border border-border rounded-sm hover:shadow-md transition-shadow;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  .stat-label {
+    @apply text-sm text-muted-foreground uppercase tracking-wide mt-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+}
